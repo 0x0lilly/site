@@ -7,7 +7,7 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none';">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="X-Frame-Options" content="DENY">
-  <title>Moonbay1</title>
+  <title>moonbay1 - shadow harbor</title>
   <style>
   body {
     margin: 0;
@@ -25,12 +25,24 @@
   }
 
   .moon {
-    width: 100px;
-    height: 100px;
+    width: 8rem;
+    height: 8rem;
     border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, #ccc, #999);
-    box-shadow: 0 0 20px #a9b0b3;
-    margin: 3em auto 1.5em;
+    background-image: url('moon.jpg');
+    background-size: 110% 100%;
+    background-color: #000000;
+    box-shadow: 
+      inset -10px 8px 6px -5px #ffffff,
+      inset 20px -20px 50px 43px rgba(0, 0, 0, 0.9),
+      7px -6px 14px rgba(255, 255, 255, 0.3215686275);
+    margin: 2em auto 1.5em;
+    animation: moonRotation 15s linear infinite;
+  }
+
+  @keyframes moonRotation {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 150% 0%; }
+    100% { background-position: 300% 0%; }
   }
 
   .tagline {
