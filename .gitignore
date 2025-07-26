@@ -37,4 +37,11 @@ build/
 
 # Temporary files
 *.tmp
-*.temp 
+*.temp
+
+# Backup files
+*.backup
+
+# Generated/minified files (regenerate from source)
+*.min.css
+*.min.js 

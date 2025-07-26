@@ -333,3 +333,12 @@ h1,
     margin: 0.3em 0;
   }
 }
+
+/* Hidden input field - ensure it's completely invisible */
+input[name="hidden_field"] {
+  display: none !important;
+  visibility: hidden !important;
+  position: absolute !important;
+  left: -9999px !important;
+  opacity: 0 !important;
+}
