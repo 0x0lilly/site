@@ -44,4 +44,7 @@ build/
 
 # Generated/minified files (regenerate from source)
 *.min.css
-*.min.js 
+*.min.js
+
+# Development/build files (don't deploy)
+build.md 

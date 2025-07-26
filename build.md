@@ -43,10 +43,21 @@ In `index.html`, change:
 <script src="script.min.js"></script>
 ```
 
-## Current Optimizations Applied
+## Security & Production Checklist
+
+### Files to EXCLUDE from production:
+```bash
+# Remove development files before deploying
+rm .DS_Store moon.jpg.backup build.md
+rm *.min.css *.min.js  # if using source files
+```
+
+### Current Optimizations Applied
 - ✅ Enhanced privacy headers (no-referrer, strict CSP)
 - ✅ Image optimized (95K → 9.5K saved)
 - ✅ Minified CSS/JS available
 - ✅ `robots.txt` prevents indexing
 - ✅ No external dependencies
-- ✅ Mobile responsive design 
+- ✅ Mobile responsive design
+- ✅ Email obfuscation
+- ✅ Strong Content Security Policy 
