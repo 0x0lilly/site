@@ -109,39 +109,9 @@ h1,
   transform: scale(1.05);
 }
 
-.footer a:hover::before {
-  content: '';
-  position: absolute;
-  top: -10px;
-  left: -10px;
-  right: -10px;
-  bottom: -10px;
-  background: radial-gradient(circle, transparent 30%, rgba(119, 221, 119, 0.1) 70%);
-  border-radius: 8px;
-  animation: pulseGlow 1.5s infinite ease-in-out;
-  z-index: -1;
-}
 
-.footer a:hover::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100px;
-  height: 100px;
-  margin: -50px 0 0 -50px;
-  background:
-    radial-gradient(2px 2px at 20px 30px, #77dd77, transparent),
-    radial-gradient(2px 2px at 40px 70px, #4fc3f7, transparent),
-    radial-gradient(1px 1px at 90px 40px, #ba68c8, transparent),
-    radial-gradient(1px 1px at 10px 80px, #ffb74d, transparent),
-    radial-gradient(2px 2px at 80px 10px, #81c784, transparent),
-    radial-gradient(1px 1px at 60px 20px, #64b5f6, transparent);
-  border-radius: 50%;
-  animation: floatingPixels 3s infinite linear;
-  pointer-events: none;
-  z-index: -1;
-}
+
+
 
 @keyframes spaceGlow {
   0% {
@@ -179,37 +149,9 @@ h1,
   }
 }
 
-@keyframes pulseGlow {
-  0% {
-    opacity: 0.3;
-    transform: scale(0.8);
-  }
 
-  100% {
-    opacity: 0.8;
-    transform: scale(1.2);
-  }
-}
 
-@keyframes floatingPixels {
-  0% {
-    transform: rotate(0deg) scale(0.8);
-    opacity: 0;
-  }
 
-  10% {
-    opacity: 1;
-  }
-
-  90% {
-    opacity: 1;
-  }
-
-  100% {
-    transform: rotate(360deg) scale(1.2);
-    opacity: 0;
-  }
-}
 
 .pgp-link {
   font-size: 0.75em;
@@ -247,51 +189,47 @@ h1,
   position: fixed;
   top: 0;
   left: 0;
-  width: 200%;
-  height: 200%;
+  width: 100%;
+  height: 100%;
   background: transparent;
   z-index: 0;
   pointer-events: none;
-  animation: starDrift 120s linear infinite;
 }
 
 .stars div {
   position: absolute;
   background: white;
   border-radius: 50%;
-  opacity: 0.1;
-  animation: twinkle 4s infinite ease-in-out alternate;
+  opacity: 0.2;
+  animation: twinkle 6s infinite ease-in-out alternate;
+}
+
+.stars div:nth-child(2n) {
+  animation-duration: 4s;
+  animation-delay: 1s;
+}
+
+.stars div:nth-child(3n) {
+  animation-duration: 8s;
+  animation-delay: 2s;
+}
+
+.stars div:nth-child(5n) {
+  animation-duration: 5s;
+  animation-delay: 0.5s;
 }
 
 @keyframes twinkle {
-  from {
+  0% {
     opacity: 0.1;
   }
 
-  to {
-    opacity: 0.4;
-  }
-}
-
-@keyframes starDrift {
-  0% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-
-  25% {
-    transform: translate(-20px, -30px) rotate(90deg);
-  }
-
   50% {
-    transform: translate(-10px, -60px) rotate(180deg);
-  }
-
-  75% {
-    transform: translate(20px, -30px) rotate(270deg);
+    opacity: 0.6;
   }
 
   100% {
-    transform: translate(0, 0) rotate(360deg);
+    opacity: 0.1;
   }
 }
 
@@ -331,6 +269,132 @@ h1,
   .tagline,
   .quote {
     margin: 0.3em 0;
+  }
+}
+
+/* Floating spaceship */
+.spaceship {
+  position: fixed;
+  width: 20px;
+  height: 8px;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.6;
+  animation: spaceshipAvoidMoon 60s linear infinite;
+}
+
+/* Main hull */
+.spaceship::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 16px solid #8db4d1;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  top: 0;
+  left: 0;
+  filter: drop-shadow(0 0 4px rgba(141, 180, 209, 0.5));
+}
+
+/* Engine trail */
+.spaceship::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #64b5f6 50%, transparent 100%);
+  top: 3px;
+  left: -8px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(100, 181, 246, 0.8);
+  animation: enginePulse 1.5s infinite ease-in-out;
+}
+
+/* Add cockpit detail */
+.spaceship {
+  position: relative;
+}
+
+.spaceship:before {
+  z-index: 1;
+}
+
+/* Small navigation light */
+.spaceship:hover::before {
+  border-left-color: #4fc3f7;
+}
+
+@keyframes spaceshipAvoidMoon {
+  0% {
+    top: 15%;
+    left: 5%;
+    transform: rotate(-14deg);
+  }
+
+  12.5% {
+    top: 10%;
+    left: 25%;
+    transform: rotate(8deg);
+  }
+
+  25% {
+    top: 20%;
+    left: 85%;
+    transform: rotate(56deg);
+  }
+
+  37.5% {
+    top: 35%;
+    left: 95%;
+    transform: rotate(108deg);
+  }
+
+  50% {
+    top: 85%;
+    left: 80%;
+    transform: rotate(198deg);
+  }
+
+  62.5% {
+    top: 90%;
+    left: 25%;
+    transform: rotate(185deg);
+  }
+
+  75% {
+    top: 80%;
+    left: 5%;
+    transform: rotate(243deg);
+  }
+
+  87.5% {
+    top: 65%;
+    left: 2%;
+    transform: rotate(281deg);
+  }
+
+  100% {
+    top: 15%;
+    left: 5%;
+    transform: rotate(326deg);
+  }
+}
+
+@keyframes enginePulse {
+  0% {
+    opacity: 0.3;
+    width: 6px;
+  }
+
+  50% {
+    opacity: 0.8;
+    width: 12px;
+  }
+
+  100% {
+    opacity: 0.3;
+    width: 6px;
   }
 }
 
