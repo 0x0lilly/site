@@ -4,24 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
-  <title>Moonbay</title>
+  <title>Moonbay1</title>
   <style>
     body {
       margin: 0;
       background: #0b0c10;
       color: #cfd8dc;
       font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
       text-align: center;
+      overflow: hidden;
+      user-select: none;
     }
 
     h1 {
       font-weight: 400;
       margin-bottom: 0.2em;
+      z-index: 2;
+      position: relative;
     }
 
     .quote {
@@ -29,7 +28,9 @@
       font-size: 0.9em;
       max-width: 400px;
       opacity: 0.7;
-      margin-top: 1em;
+      margin: 1em auto 0;
+      z-index: 2;
+      position: relative;
     }
 
     .moon {
@@ -38,28 +39,91 @@
       border-radius: 50%;
       background: radial-gradient(circle at 30% 30%, #ccc, #999);
       box-shadow: 0 0 20px #a9b0b3;
-      margin-bottom: 2em;
+      margin: 3em auto 1.5em;
+      z-index: 2;
+      position: relative;
     }
 
-    footer {
-      font-size: 0.75em;
-      color: #888;
-      margin-top: 3em;
+    .tagline {
+      font-size: 0.9em;
+      color: #8899a6;
+      margin-bottom: 1em;
+      z-index: 2;
+      position: relative;
+    }
+
+    .secret {
+      display: none;
+      font-size: 0.85em;
+      color: #77dd77;
+      margin-top: 2em;
+      z-index: 2;
+      position: relative;
+    }
+
+    /* Star background animation */
+    .stars {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: transparent;
+      z-index: 0;
+    }
+
+    .stars::before, .stars::after {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(white 1px, transparent 1px);
+      background-size: 2px 2px;
+      animation: starScroll 100s linear infinite;
+      opacity: 0.15;
+    }
+
+    .stars::after {
+      animation-direction: reverse;
+    }
+
+    @keyframes starScroll {
+      from { transform: translate(0, 0); }
+      to { transform: translate(-50%, -50%); }
     }
   </style>
 </head>
-<body>
+<body oncontextmenu="return false" ondragstart="return false">
+
+  <div class="stars"></div>
+
   <div class="moon"></div>
   <h1>moonbay1</h1>
   <p class="tagline">a quiet address in orbit.</p>
+  <div class="quote" id="quote"></div>
 
-  <div class="quote">
-    “The right to be let alone is the most comprehensive of rights and the right most valued by civilized men.”<br>
-    — Louis Brandeis
-  </div>
+  <div class="secret" id="secret">You found the quiet zone. 🛰️</div>
 
-  <footer>
-    <!-- Optional: <p>Nothing to see here.</p> -->
-  </footer>
+  <script>
+    // Random quote logic
+    const quotes = [
+      "The right to be let alone is the most comprehensive of rights. — Louis Brandeis",
+      "Privacy is freedom. — Unknown",
+      "Arguing against privacy is like saying you don't care about free speech. — Edward Snowden",
+      "The less they know, the better you sleep. — Unknown",
+      "You are not the product. — A wishful thinker"
+    ];
+
+    document.getElementById('quote').innerText =
+      quotes[Math.floor(Math.random() * quotes.length)];
+
+    // Easter egg toggle
+    document.addEventListener('keydown', function(e) {
+      if (e.ctrlKey && e.key === '.') {
+        const secret = document.getElementById('secret');
+        secret.style.display = secret.style.display === 'block' ? 'none' : 'block';
+      }
+    });
+  </script>
 </body>
 </html>
