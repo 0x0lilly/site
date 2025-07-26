@@ -51,19 +51,44 @@
     margin-bottom: 1em;
   }
 
-  .contact-hint {
-    font-size: 0.8em;
+  .footer {
+    position: fixed;
+    bottom: 1.5em;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+
+  .footer p {
+    font-size: 0.7em;
     color: #6b7c87;
-    margin-bottom: 1.5em;
     opacity: 0.6;
-    font-style: italic;
-    cursor: pointer;
+    margin: 0;
+  }
+
+  .footer a {
+    color: #6b7c87 !important;
     transition: opacity 0.3s ease, color 0.3s ease;
   }
 
-  .contact-hint:hover {
+  .footer a:hover {
+    opacity: 0.9;
+    color: #8899a6 !important;
+  }
+
+  .pgp-link {
+    font-size: 0.75em;
+    color: #6b7c87;
+    text-decoration: none;
+    opacity: 0.5;
+    transition: opacity 0.3s ease, color 0.3s ease;
+    font-style: italic;
+  }
+
+  .pgp-link:hover {
     opacity: 0.9;
     color: #77dd77;
+    text-decoration: underline;
   }
 
   .quote {
@@ -133,10 +158,32 @@
   <div class="moon"></div>
   <h1>moonbay1</h1>
   <p class="tagline">a quiet address in orbit.</p>
-  <p class="contact-hint">contact? use the key</p>
   <div class="quote" id="quote"></div>
 
   <div class="secret" id="secret">You found the quiet zone. 🛰️</div>
+
+  <footer class="footer">
+    <p>
+      Ping the relay: <a href="#" id="relay-link" style="color: #aaa; text-decoration: none;">Loading…</a>
+    </p>
+    <noscript>
+      <p style="font-size: 0.75em; color: #666;">
+        relay [at] moonbay1 [dot] com
+      </p>
+    </noscript>
+  </footer>
+  
+  <script>
+    (function() {
+      const user = 'relay';
+      const domain = 'moonbay1.com';
+      const link = document.getElementById('relay-link');
+      const address = user + '@' + domain;
+      link.href = 'mailto:' + address;
+      link.textContent = address;
+    })();
+  </script>
+  </footer>
 
   <script>
     // Create star field
@@ -177,11 +224,6 @@
 
     document.getElementById('quote').innerText =
       quotes[Math.floor(Math.random() * quotes.length)];
-
-    // Contact hint functionality
-    document.querySelector('.contact-hint').addEventListener('click', function() {
-      window.location.href = '/pgp.txt';
-    });
 
     // Easter egg toggle
     document.addEventListener('keydown', function(e) {
