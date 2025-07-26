@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none';">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <title>Moonbay1</title>
@@ -37,6 +37,21 @@
     font-size: 0.9em;
     color: #8899a6;
     margin-bottom: 1em;
+  }
+
+  .contact-hint {
+    font-size: 0.8em;
+    color: #6b7c87;
+    margin-bottom: 1.5em;
+    opacity: 0.6;
+    font-style: italic;
+    cursor: pointer;
+    transition: opacity 0.3s ease, color 0.3s ease;
+  }
+
+  .contact-hint:hover {
+    opacity: 0.9;
+    color: #77dd77;
   }
 
   .quote {
@@ -106,6 +121,7 @@
   <div class="moon"></div>
   <h1>moonbay1</h1>
   <p class="tagline">a quiet address in orbit.</p>
+  <p class="contact-hint">contact? use the key</p>
   <div class="quote" id="quote"></div>
 
   <div class="secret" id="secret">You found the quiet zone. 🛰️</div>
@@ -149,6 +165,11 @@
 
     document.getElementById('quote').innerText =
       quotes[Math.floor(Math.random() * quotes.length)];
+
+    // Contact hint functionality
+    document.querySelector('.contact-hint').addEventListener('click', function() {
+      window.location.href = '/pgp.txt';
+    });
 
     // Easter egg toggle
     document.addEventListener('keydown', function(e) {
